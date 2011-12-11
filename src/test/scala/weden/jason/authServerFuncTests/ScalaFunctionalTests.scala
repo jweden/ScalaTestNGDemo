@@ -1,7 +1,6 @@
 package weden.jason.authServerFuncTests
 
 import org.testng.annotations.Test
-import weden.jason.authServerFuncTests.TestBase
 import org.testng.Assert._
 import org.scalatest.testng.TestNGSuite
 
