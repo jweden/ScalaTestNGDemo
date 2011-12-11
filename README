@@ -1,4 +1,4 @@
-Here we show TestNG test classes in BOTH Scala and Java.  The nice thing about this demo app is that it is entirely self-contained.  This means that if you have java and maven and scala installed, you just need to run "mvn test" after unzipping.  This starts up the server in a separate thread so that the tests can be run against it.  Here are my maven and java and OS specs; note I only tested this on windows:
+Here we show TestNG test classes in BOTH Scala and Java.  What happens is that before the tests fire up, a server is started that requires HTTP basic authentication.  And it is the tests in java and scala that perform some test cases against this server.  The nice thing about this demo app is that it is entirely self-contained.  This means that if you have java and maven and scala installed, you just need to run "mvn test" after unzipping.  This starts up the server in a separate thread so that the tests can be run against it.  Here are my maven and java and OS specs; note I only tested this on windows:
 
 C:\dx>mvn -version
 Apache Maven 3.0.1 (r1038046; 2010-11-23 05:58:32-0500)
@@ -12,7 +12,7 @@ Scala code runnner version 2.9.1.final
 
 The TestBase class defines the password that will be successful as well as the port number for the server.  The tests in FunctionalTests define the file to look for - right now just hello.txt is included. 
 
-Many of the the test cases are due to testing the multi-threading as well as the sequential invocation test.  There are a lot of TestNG features here: using a DataProvider for data-driven tests, a test of the multi-threading, negative tests to capture exceptions, sequential invocations, test groups, and a nice inheritance model where some pre-test setup is accomplished in the TestBase base class.  All tests should pass.
+Many of the the test cases are due to testing the multi-threading as well as the sequential invocation test.  There are a lot of TestNG features here: using a DataProvider for data-driven tests, a test of the multi-threading, negative tests to capture exceptions, sequential invocations, test groups, and a nice inheritance model where some pre-test setup is accomplished in the TestBase base class.  Right now the Scala tests repeat some of the existing tests. All tests should pass.
 
 Improvements if I had time:
 1. More test scenarios
