@@ -1,0 +1,22 @@
+The nice thing about this demo app is that it is entirely self-contained.  This means that if you have java and maven installed, you just need to run "mvn test" after unzipping.  This starts up the server in a separate thread so that the tests can be run against it.  Here are my maven and java and OS specs; note I only tested this on windows:
+
+C:\dx>mvn -version
+Apache Maven 3.0.1 (r1038046; 2010-11-23 05:58:32-0500)
+Java version: 1.6.0_23
+Java home: C:\Program Files\Java\jdk1.6.0_23\jre
+Default locale: en_US, platform encoding: Cp1252
+OS name: "windows 7" version: "6.1" arch: "amd64" Family: "windows"
+
+Here are the scala specs:
+Scala code runnner version 2.9.1.final
+
+The TestBase class defines the password that will be successful as well as the port number for the server.  The tests in FunctionalTests define the file to look for - right now just hello.txt is included. 
+
+Many of the the test cases are due to testing the multi-threading as well as the sequential invocation test.  There are a lot of TestNG features here: using a DataProvider for data-driven tests, a test of the multi-threading, negative tests to capture exceptions, sequential invocations, test groups, and a nice inheritance model where some pre-test setup is accomplished in the TestBase base class.  All tests should pass.
+
+Improvements if I had time:
+1. More test scenarios
+2. A separate thread is spawned for each connection.  This isn't good for really high performance servers.  Better throughput could probably be obtained from using the new threading packages: nio/nio2.
+3. There is a small possibility (that I haven't yet seen) where the @BeforeClass begins the server start and the tests run in the other thread before the server is actually 100% up and running.
+4. Abstract out some of the items to a properties file or testng.xml for more flexibility in testing.
+5. Put http responses in a separate ENUM and have more of them.
