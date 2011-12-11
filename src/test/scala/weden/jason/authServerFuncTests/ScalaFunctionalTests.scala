@@ -10,8 +10,5 @@ class ScalaFunctionalTests extends TestBase with TestNGSuite {
     def easyTest() {
     import TestBase._
     assertTrue(doPositiveTest(USER_PASS).contains("helloWorld"))
-   // assertTrue(doPositiveTest("jason:hello5").contains("helloWorld"))
     }
-
-
 }
