@@ -2,6 +2,7 @@ package weden.jason.authServerFuncTests;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
@@ -21,15 +22,17 @@ public class TestBase {
 
     private static final Logger LOG = LogManager.getLogger(TestBase.class);
     protected static final String USER_PASS = "jason:hello5";
-    protected static final int PORT_NUM = 9562;
+    protected static final int PORT_NUM = 9565;
+    ServerStarter ss;
 
     @BeforeSuite(description = "Start the Server")
-    public void beforeClass() throws Exception {
+    public void beforeSuite() throws Exception {
         LOG.info("Starting Server");
         new Thread() {
             public void run() {
                 try {
-                    new ServerStarter().startAuthServer(PORT_NUM, USER_PASS);
+                    ss = new ServerStarter();
+                    ss.startAuthServer(PORT_NUM, USER_PASS);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -66,8 +69,13 @@ public class TestBase {
         while ((line = in.readLine()) != null) {
             sb.append(line + "\n");
         }
-        LOG.info(sb.toString());
+        LOG.info(sb);
         return sb.toString();
     }
 
+    @AfterSuite(description = "Stopping the Server")
+    public void afterSuite() throws Exception {
+        LOG.info("Stopping Server");
+        ss.stopAuthServer();
+    }
 }
