@@ -12,7 +12,7 @@ import org.apache.log4j.{Logger, LogManager}
 class ScalaFunctionalTests extends TestBase with TestNGSuite {
   private final val LOG: Logger = LogManager.getLogger(classOf[TestBase])
 
-  @Test(invocationCount = 3, description = "Repeat of test but this time from Scala")
+  @Test(invocationCount = 3, description = "Repeat of test in java but this time from Scala to show calling Java base class")
     def easyTest() {
       assertTrue(doPositiveTest(USER_PASS).contains("helloWorld"))
     }
