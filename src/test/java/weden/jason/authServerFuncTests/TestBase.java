@@ -3,7 +3,6 @@ package weden.jason.authServerFuncTests;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import weden.jason.authServer.ServerStarter;

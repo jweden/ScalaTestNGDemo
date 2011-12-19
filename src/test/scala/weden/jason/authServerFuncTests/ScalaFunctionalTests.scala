@@ -13,9 +13,9 @@ class ScalaFunctionalTests extends TestBase with TestNGSuite {
   private final val LOG: Logger = LogManager.getLogger(classOf[TestBase])
 
   @Test(invocationCount = 3, description = "Repeat of test in java but this time from Scala to show calling Java base class")
-    def easyTest() {
-      assertTrue(doPositiveTest(USER_PASS).contains("helloWorld"))
-    }
+  def easyTest() {
+    assertTrue(doPositiveTest(USER_PASS).contains("helloWorld"))
+  }
 
   @Test(description = "Bad Basic Auth Header -- no space after \"Basic\"")
   def badBasicHeaderTest() {
@@ -30,9 +30,9 @@ class ScalaFunctionalTests extends TestBase with TestNGSuite {
     try {
       new BufferedReader(new InputStreamReader(con.getInputStream))
       fail("The server is erroneously allowing a bad Basic Auth header -- no space after \"Basic\"");
-    } catch  {
-      case e:java.net.ProtocolException =>  LOG.info("Request correctly rejected")
-      case _ =>  fail("Unexpected exception");
+    } catch {
+      case e: java.net.ProtocolException => LOG.info("Request correctly rejected")
+      case _ => fail("Unexpected exception");
     }
   }
 }

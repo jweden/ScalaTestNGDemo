@@ -4,12 +4,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 
-import javax.xml.bind.DatatypeConverter;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -37,8 +32,6 @@ public class FunctionalTests extends TestBase {
             throws InterruptedException, IOException {
         assertFalse(doPositiveTest(userPass).contains("helloWorld"));
     }
-
-
 
 
 }
