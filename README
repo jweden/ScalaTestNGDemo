@@ -12,7 +12,7 @@ Scala code runnner version 2.9.1.final
 
 The TestBase class defines the password that will be successful as well as the port number for the server.  The tests in FunctionalTests define the file to look for - right now just hello.txt is included. 
 
-Many of the the test cases are due to testing the multi-threading as well as the sequential invocation test.  There are a lot of TestNG features here: using a DataProvider for data-driven tests, a test of the multi-threading, negative tests to capture exceptions, sequential invocations, test groups, and a nice inheritance model where some pre-test setup is accomplished in the TestBase base class.  Right now the Scala tests repeat some of the existing tests. All tests should pass.
+Many of the the test cases are due to testing the multi-threading as well as the sequential invocation test.  There are a lot of TestNG features here: using a DataProvider for data-driven tests, a test of the multi-threading, negative tests to capture exceptions, sequential invocations, test groups, and a nice inheritance model where some pre-test setup is accomplished in the TestBase base class.  Right now some of the Scala tests repeat some of the existing tests. All tests should pass.
 
 Improvements if I had time:
 1. More test scenarios

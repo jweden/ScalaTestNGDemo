@@ -13,7 +13,7 @@ class ScalaFunctionalTests extends TestBase with TestNGSuite {
   private final val LOG: Logger = LogManager.getLogger(classOf[ScalaFunctionalTests])
 
   @Test(invocationCount = 3, description = "Repeat of test in java but this time from Scala to show calling Java base class")
-  def easyTest() {
+  def positiveTest() {
     assertTrue(doPositiveTest(USER_PASS).contains("helloWorld"))
   }
 
@@ -47,9 +47,9 @@ class ScalaFunctionalTests extends TestBase with TestNGSuite {
       con.addRequestProperty("Foo", "Bar")
       con.connect
 
-      var in: BufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream))
-      var sb: StringBuilder = new StringBuilder
-      var line: String = ""
+      val in: BufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream))
+      val sb: StringBuilder = new StringBuilder
+      var line = ""
 
       while ((({
         line = in.readLine;

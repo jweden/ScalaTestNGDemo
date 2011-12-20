@@ -11,6 +11,7 @@
         <testNG-version>6.3.1</testNG-version>
         <scala-version>2.9.1</scala-version>
         <scalatest-version>1.6.1</scalatest-version>
+        <maven-scala-version>2.15.3-SNAPSHOT</maven-scala-version>
     </properties>
     <dependencies>
         <dependency>
@@ -60,6 +61,7 @@
             <plugin>
                 <groupId>org.scala-tools</groupId>
                 <artifactId>maven-scala-plugin</artifactId>
+                <version>${maven-scala-version}</version>
                 <executions>
                     <execution>
                         <id>scala-compile</id>
@@ -80,29 +82,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.10</version>
                 <configuration>
-                    <!--<skipTests>true</skipTests>-->
                     <includes>
                         <include>**/*.java</include>
+                        <include>**/*.scala</include>
                     </includes>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.scalatest</groupId>
-                <artifactId>maven-scalatest-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
-
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <configuration>
-                            <!--reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory-->
-                            <xmlreports>xml</xmlreports>
-                            <!--filereports>WDF TestSuite.txt</filereports-->
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -111,6 +95,7 @@
             <plugin>
                 <groupId>org.scala-tools</groupId>
                 <artifactId>maven-scala-plugin</artifactId>
+                <version>${maven-scala-version}</version>
             </plugin>
         </plugins>
     </reporting>
