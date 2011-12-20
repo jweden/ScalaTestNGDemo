@@ -17,22 +17,51 @@ class ScalaFunctionalTests extends TestBase with TestNGSuite {
     assertTrue(doPositiveTest(USER_PASS).contains("helloWorld"))
   }
 
-  @Test(description = "Bad Basic Auth Header -- no space after \"Basic\"")
-  def badBasicHeaderTest() {
-    val url: URL = new URL("http://localhost:" + PORT_NUM + "/" + "hello.txt")
-    val con: URLConnection = url.openConnection
-    val encoding: String = DatatypeConverter.printBase64Binary(USER_PASS.getBytes)
+  @Test(description = "Bad Basic Auth Header and Random Header scenarios")
+  def headerTests() {
 
-    //Negative test -- notice no space after Basic
-    con.addRequestProperty("Authorization", "Basic" + encoding)
-    con.connect
-
-    try {
-      new BufferedReader(new InputStreamReader(con.getInputStream))
-      fail("The server is erroneously allowing a bad Basic Auth header -- no space after \"Basic\"");
-    } catch {
-      case e: java.net.ProtocolException => LOG.info("Request correctly rejected")
-      case _ => fail("Unexpected exception");
+    def commonSetup(authValue: String): URLConnection = {
+      val url: URL = new URL("http://localhost:" + PORT_NUM + "/" + "hello.txt")
+      val con: URLConnection = url.openConnection
+      val encoding: String = DatatypeConverter.printBase64Binary(USER_PASS.getBytes)
+      con.addRequestProperty("Authorization", authValue + encoding)
+      con
     }
+
+    def badBasicHeaderTest() {
+      //Negative test -- notice no space after Basic
+      val con = commonSetup("Basic")
+      con.connect
+
+      try {
+        new BufferedReader(new InputStreamReader(con.getInputStream))
+        fail("The server is erroneously allowing a bad Basic Auth header -- no space after \"Basic\"");
+      } catch {
+        case e: java.net.ProtocolException => LOG.info("Request correctly rejected")
+        case _ => fail("Unexpected exception");
+      }
+    }
+
+    def randomHeaderTest() {
+      val con = commonSetup("Basic ")
+      con.addRequestProperty("Foo", "Bar")
+      con.connect
+
+      var in: BufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream))
+      var sb: StringBuilder = new StringBuilder
+      var line: String = ""
+
+      while ((({
+        line = in.readLine;
+        line
+      })) != null) {
+        sb.append(line + "\n")
+      }
+
+      assertTrue(sb.toString().contains("helloWorld"))
+    }
+
+    badBasicHeaderTest()
+    randomHeaderTest()
   }
 }
