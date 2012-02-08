@@ -11,7 +11,7 @@
         <testNG-version>6.3.1</testNG-version>
         <scala-version>2.9.1</scala-version>
         <scalatest-version>1.6.1</scalatest-version>
-        <maven-scala-version>2.15.3-SNAPSHOT</maven-scala-version>
+        <maven-scala-version>2.15.2</maven-scala-version>
     </properties>
     <dependencies>
         <dependency>
@@ -113,16 +113,6 @@
         </repository>
     </repositories>
     <pluginRepositories>
-        <pluginRepository>
-            <id>Scala-Tools</id>
-            <name>Scala-Tools</name>
-            <url>http://scala-tools.org/repo-snapshots/</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>Scala-Tools2</id>
-            <name>Scala-Tools2</name>
-            <url>http://scala-tools.org/repo-releases/</url>
-        </pluginRepository>
         <pluginRepository>
             <id>javanet.repo</id>
             <url>http://download.java.net/maven/2</url>
